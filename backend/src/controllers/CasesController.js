@@ -21,7 +21,7 @@ module.exports = {
         const { page = 1} = request.query
 
         const [count] = await connection('casos').count()
-        console.log(count)
+        
 
         const casos = await connection('casos')
         .join('ongs', 'ongs.id', '=', 'casos.ong_id')
@@ -33,7 +33,7 @@ module.exports = {
         'ongs.whatsapp',
         'ongs.cidade',
         'ongs.uf')
-
+        
         response.header('X-Total-Count', count['count(*)'])
 
         return response.json(casos)
